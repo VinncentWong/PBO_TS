@@ -1,8 +1,17 @@
+import { Buku } from "./Buku";
+import { Pegawai } from "./Pegawai";
+import { Pelanggan } from "./Pelanggan";
+
 export class Perpustakaan{
+    public static listPelanggan: Pelanggan[];
+    public static listBuku: Buku[];
     constructor(
-        private listBuku: Buku[],
         public pegawaiPerpus: Pegawai,
-        public listPelanggan: Pelanggan[]
     ){}
-    
+    public getPegawaiPerpus(): Pegawai{
+        return this.pegawaiPerpus;
+    }
+    public setPegawaiPerpus(pegawaiPerpus: Pegawai): void {
+        this.pegawaiPerpus = pegawaiPerpus;
+    }
 }

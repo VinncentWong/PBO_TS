@@ -22,4 +22,11 @@ export class Buku{
     public getPenulis(): string{
         return this.penulis;
     }
+    public tampilkanInfoBuku(): void{
+        console.log(
+        `Judul = ${this.getJudul}\n
+        Penulis = ${this.getPenulis}\n
+        Jumlah = ${this.getJumlah}`
+        );
+    }
 }

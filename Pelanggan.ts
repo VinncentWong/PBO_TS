@@ -1,10 +1,10 @@
 import { Buku } from "./Buku";
 
 export class Pelanggan{
+    private bukuPinjaman: Buku[]
     constructor(
         private nama: string,
         private nomorPelanggan: string,
-        private bukuPinjaman: Buku[]
     ){}
     public setNama(nama: string): void{
         this.nama = nama;
@@ -18,6 +18,18 @@ export class Pelanggan{
     public getNomorPelanggan(): string{
         return this.nomorPelanggan;
     }
-    public tambahBuku(buku: Buku): void{}
-    public tampilkanInfoPelanggan(): void{}
+    public tambahBuku(buku: Buku): void{
+        this.bukuPinjaman.push(buku);
+    }
+    public tampilkanInfoPelanggan(): void{
+        let sentence:string = `
+        Nama = ${this.getNama}\n
+        Nomor Pelanggan = ${this.getNomorPelanggan}\n
+        `
+        if(this.bukuPinjaman.length === 0){
+            sentence = sentence + `Buku Pinjaman = Tidak ada`;
+        } else {
+            sentence = sentence + `Buku Pinjaman = ${this.bukuPinjaman}`;
+        }
+    }
 }
