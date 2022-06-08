@@ -16,18 +16,17 @@ export class Perpustakaan{
     }
     public tampilkanInformasiPerpustakaan(): void{
         console.log("INFORMASI PEGAWAI YANG ADA DI PERPUSTAKAAN");
-        console.log(`Nama : ${this.getPegawaiPerpus().getNama}`);
+        console.log(`Nama : ${this.getPegawaiPerpus().getNama()}`);
         console.log(`Nomor Pegawai : ${this.getPegawaiPerpus().getNomorPegawai()}`);
         console.log("=========================");
         console.log("Daftar Pelanggan di perpustakaan");
         for(let pelanggan of Perpustakaan.listPelanggan){
-            console.log(`
-            Nama : ${pelanggan.getNama()}\n
-            Nomor Pelanggan : ${pelanggan.getNomorPelanggan()}\n
-            `);
+            console.log(
+            `Nama : ${pelanggan.getNama()}\nNomor Pelanggan : ${pelanggan.getNomorPelanggan()}\n`);
             let i: number = 0;
             for(let bukus of pelanggan.getBukuPinjaman()){
                 console.log(`${i + 1}. ${bukus.getJudul()}`);
+                i++;
             }
             console.log();
         }
@@ -41,7 +40,15 @@ export class Perpustakaan{
         }
     }
     public pinjam(namaPelanggan: string, judulBuku: string): void{
-
+        let buku: Buku = this.cariBuku(judulBuku);
+        if(buku === null){
+            throw new Error("Buku Not Found! ");
+        }
+        for(let pelanggan of Perpustakaan.listPelanggan){
+            if(pelanggan.getNama() === namaPelanggan){
+                pelanggan.tambahBuku(buku);
+            }
+        }
     }
     public cariBuku(judulBuku: string): Buku{
         let isValid:boolean = false;
@@ -52,7 +59,7 @@ export class Perpustakaan{
             }
         }
         if(!isValid){
-            console.log('Book not found!');
+            return null;
         }
     }
 }

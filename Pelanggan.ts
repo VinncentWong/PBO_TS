@@ -2,11 +2,13 @@ import { Buku } from "./Buku";
 import { Perpustakaan } from "./Perpustakaan";
 
 export class Pelanggan{
-    private bukuPinjaman: Buku[]
+    public bukuPinjaman: Buku[]
     constructor(
         private nama: string,
         private nomorPelanggan: string,
-    ){}
+    ){
+        this.bukuPinjaman = [];
+    }
     public setNama(nama: string): void{
         this.nama = nama;
     }
