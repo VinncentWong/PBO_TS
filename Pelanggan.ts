@@ -13,6 +13,12 @@ export class Pelanggan{
     public getNama(): string{
         return this.nama;
     }
+    public setBukuPinjaman(buku: Buku[]): void{
+        this.bukuPinjaman = buku;
+    }
+    public getBukuPinjaman(): Buku[]{
+        return this.bukuPinjaman;
+    }
     public setNomorPelanggan(nomorPelanggan: string){
         this.nomorPelanggan = nomorPelanggan;
     }
