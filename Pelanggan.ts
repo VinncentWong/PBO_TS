@@ -1,4 +1,5 @@
 import { Buku } from "./Buku";
+import { Perpustakaan } from "./Perpustakaan";
 
 export class Pelanggan{
     private bukuPinjaman: Buku[]
@@ -19,7 +20,15 @@ export class Pelanggan{
         return this.nomorPelanggan;
     }
     public tambahBuku(buku: Buku): void{
-        this.bukuPinjaman.push(buku);
+        for(let tempBuku of Perpustakaan.listBuku){
+            if(tempBuku.getJudul() === buku.getJudul()){
+                if(tempBuku.getJumlah() >= 0 && this.bukuPinjaman.length <= 3){
+                    this.bukuPinjaman.push(buku);
+                } else {
+                    console.log('Tidak bisa menambahkan buku karena melanggar syarat! ');
+                }
+            }
+        }
     }
     public tampilkanInfoPelanggan(): void{
         let sentence:string = `
